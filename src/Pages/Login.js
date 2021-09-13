@@ -5,7 +5,8 @@ import './login.css';
 
 const Login = ({ setLoggedIn }) => {
 
-      const databaseLocation = "https://lagerwelt3000.herokuapp.com"; //"http://localhost:5000";
+      const databaseLocation = "https://lagerwelt3000.herokuapp.com";
+      // const databaseLocation = "http://localhost:5000";
 
       const [username, setUsername] = useState('');
       const [password, setPassword] = useState('');
@@ -21,6 +22,7 @@ const Login = ({ setLoggedIn }) => {
                   setLoggedIn(response.data.loggedIn);
                   if(response.data.loggedIn === true) {
                         history.push("/home");
+                        console.log("Login.js: Logged in!");
                   }
             });
       }, []);
@@ -34,6 +36,7 @@ const Login = ({ setLoggedIn }) => {
                   if(!response.data.includes("Wrong")) {
                         setLoggedIn(true);
                         history.push("/home");
+                        console.log("Login.js2: Logged in!");
                   } else {
                         setLoginStatus(response.data);
                   }

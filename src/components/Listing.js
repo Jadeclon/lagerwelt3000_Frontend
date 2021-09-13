@@ -7,7 +7,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const Listing = ({article, filteredList, setFilteredList, openModal, setOpenModal, setSelectedArticle}) => {
 
-      const databaseLocation = "https://lagerwelt3000.herokuapp.com"; //"http://localhost:5000";
+      const databaseLocation = "https://lagerwelt3000.herokuapp.com";
+      // const databaseLocation = "http://localhost:5000";
 
 
       const updateArticleInList = () => {

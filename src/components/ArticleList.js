@@ -7,7 +7,8 @@ import { Redirect } from "react-router-dom";
 
 const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, setOpenModal}) => {
 
-    const databaseLocation = "https://lagerwelt3000.herokuapp.com"; //"http://localhost:5000";
+    const databaseLocation = "https://lagerwelt3000.herokuapp.com";
+    // const databaseLocation = "http://localhost:5000";
 
     const [articleList, setArticleList] = useState([]);
     const [searchText, setSearchText] = useState([]);
@@ -39,6 +40,7 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
   
 
     if(!loggedIn) {
+        console.log("NOT logged in!");
         return <Redirect to="/" />;
     }
 
