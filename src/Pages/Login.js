@@ -11,7 +11,7 @@ const Login = ({ setLoggedIn }) => {
       const [username, setUsername] = useState('');
       const [password, setPassword] = useState('');
 
-      // const [loginStatus, setLoginStatus] = useState('');
+      const [loginStatus, setLoginStatus] = useState('');
 
       let history = useHistory(); 
 
