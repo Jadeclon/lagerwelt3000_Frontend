@@ -23,8 +23,8 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
         Axios.get(`${databaseLocation}/api/get`).then( (response) => {
             console.log("Data loaded")
             setArticleList(response.data);
-            // setSearchText("");
-            // searchHandler();
+            setSearchText("");
+            searchHandler();
         });
       };
 
