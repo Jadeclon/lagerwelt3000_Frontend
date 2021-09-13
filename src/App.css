@@ -10,6 +10,22 @@ body {
 	min-height: 100vh;
 }
 
+.searchSection {
+	margin: 15px;
+}
+
+/* input {
+	margin: 5px;
+	padding: 0.5rem;
+	font-size: 1.5rem;
+	border: none;
+	background: white;
+} */
+
+.loginStatus {
+	color: red;
+}
+
 .App-header {
 	background-color: #282c34;
 	min-height: 100vh;
@@ -41,7 +57,7 @@ form input,
 form button {
 	padding: 0.5rem;
 	font-size: 1rem;
-	border: none;
+	/* border: none; */
 	background: white;
 }
 
@@ -74,7 +90,7 @@ td {
 	text-align: left;
 }
 
-h1 {
+.mainTitle {
 	font-family: Teko;
 	font-size: 100px;
 	margin: 0px;
@@ -164,4 +180,10 @@ h3 {
 .fa-trash,
 .fa-check {
 	pointer-events: none;
+}
+
+.Listing {
+	text-align: center;
+	align-items: center;
+	justify-content: center;
 }
