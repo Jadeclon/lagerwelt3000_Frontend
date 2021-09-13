@@ -13,9 +13,9 @@ function App() {
     const [selectedArticle, setSelectedArticle] = useState({});
     const [openModal, setOpenModal] = useState(false);
 
-    useEffect(() => {
-      console.log("App loggedIn: " + loggedIn);
-    }, [loggedIn])
+    // useEffect(() => {
+    //   console.log("App loggedIn: " + loggedIn);
+    // }, [loggedIn])
 
 
   return (
