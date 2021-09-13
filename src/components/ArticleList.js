@@ -16,7 +16,7 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
 
 
     const searchHandler = () => {
-        setFilteredList(articleList.filter(article => article.articleNumber.includes(searchText)));
+        setFilteredList(articleList.filter(article => article.Artikelnummer.includes(searchText)));
     };
 
     const loadArticleList = () => {
