@@ -5,10 +5,9 @@ import { Redirect } from "react-router-dom";
 
 
 
-const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, setOpenModal}) => {
+const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, setOpenModal, databaseLocation}) => {
 
-    const databaseLocation = "https://lagerwelt3000.herokuapp.com";
-    // const databaseLocation = "http://localhost:5000";
+
 
     const [articleList, setArticleList] = useState([]);
     const [searchText, setSearchText] = useState([]);
@@ -16,7 +15,7 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
 
 
     const searchHandler = () => {
-        setFilteredList(articleList.filter(article => article.articleNumber.includes(searchText)));
+        setFilteredList(articleList.filter(article => article.articleNumber.includes(searchText) || article.oe.includes(searchText)));
     };
 
     const loadArticleList = () => {
@@ -57,14 +56,16 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
             <table>
                 <thead>
                     <tr>
+                        <th>Marke</th>
+                        <th>Leistung</th>
                         <th>Lagerplatz</th>
                         <th>Artikelnummer</th>
                         <th>Anzahl</th>
                         <th>Hersteller</th>
                         <th className="td-icon">+</th>
                         <th className="td-icon">-</th>
-                        <th>Edit</th>
-                        <th>X</th>
+                        {/* <th>Edit</th>
+                        <th>X</th> */}
                     </tr>
                 </thead>
                 <tbody>
@@ -79,6 +80,7 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
                                 openModal={openModal}
                                 setOpenModal={setOpenModal}
                                 setSelectedArticle={setSelectedArticle}
+                                databaseLocation={databaseLocation}
                             />
                         )})
                     }

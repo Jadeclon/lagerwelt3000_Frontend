@@ -3,10 +3,8 @@ import { useHistory } from "react-router-dom";
 import Axios from 'axios';
 import './login.css';
 
-const Login = ({ setLoggedIn }) => {
+const Login = ({ setLoggedIn, databaseLocation }) => {
 
-      const databaseLocation = "https://lagerwelt3000.herokuapp.com";
-      // const databaseLocation = "http://localhost:5000";
 
       const [username, setUsername] = useState('');
       const [password, setPassword] = useState('');

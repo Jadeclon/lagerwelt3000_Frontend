@@ -5,10 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 
 
-const Listing = ({article, filteredList, setFilteredList, openModal, setOpenModal, setSelectedArticle}) => {
-
-      const databaseLocation = "https://lagerwelt3000.herokuapp.com";
-      // const databaseLocation = "http://localhost:5000";
+const Listing = ({article, filteredList, setFilteredList, openModal, setOpenModal, setSelectedArticle, databaseLocation}) => {
 
 
       const updateArticleInList = () => {
@@ -63,6 +60,8 @@ const Listing = ({article, filteredList, setFilteredList, openModal, setOpenModa
 
       return (
             <tr>
+                  <td>{ article.brand }</td>
+                  <td>{ article.power }</td>
                   <td>{ article.storagePlace }</td>
                   <td>{ article.articleNumber }</td>
                   <td id="quantity">{ article.quantity }</td>
@@ -77,7 +76,7 @@ const Listing = ({article, filteredList, setFilteredList, openModal, setOpenModa
                               <i className="fas fa-minus"></i>
                         </button>
                   </td>
-                  <td className="td-icon">
+                  {/* <td className="td-icon">
                         <button onClick={ () => {editHandler()} } className="update-btn" disabled>
                               <i className="fas fa-edit"></i>
                         </button>
@@ -86,7 +85,7 @@ const Listing = ({article, filteredList, setFilteredList, openModal, setOpenModa
                         <button onClick={ () => {deleteHandler(article.articleId)} } className="trash-btn" disabled>
                               <i className="fas fa-trash"></i>
                         </button>
-                  </td>
+                  </td> */}
             </tr>
       )
 

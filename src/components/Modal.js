@@ -3,11 +3,9 @@ import ArticleList from './ArticleList';
 import Axios from 'axios';
 import './Modal.css';
 
-const Modal = ({setOpenModal, article, updateArticleInList}) => {
+const Modal = ({setOpenModal, article, updateArticleInList, databaseLocation}) => {
 
-    const databaseLocation = "https://lagerwelt3000.herokuapp.com";
-    // const databaseLocation = "http://localhost:5000";
-
+    
     const editHandler = () => {
         article.articleNumber = document.getElementById("articleNumber").value;
         article.storagePlace = document.getElementById("storagePlace").value;

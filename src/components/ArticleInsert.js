@@ -6,8 +6,8 @@ const ArticleList = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
 
-    const databaseLocation = "https://lagerwelt3000.herokuapp.com";
-    // const databaseLocation = "http://localhost:5000";
+    // const databaseLocation = "https://lagerwelt3000.herokuapp.com";
+    const databaseLocation = "http://localhost:5000";
 
     const submitReview = async () => {
 
