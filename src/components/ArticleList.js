@@ -46,7 +46,7 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
     return (
         <div>
             <div className="searchSection">
-                <input type="text" name="searchInput" placeholder="Search" onChange={ (e) => {
+                <input className="searchInput" type="text" name="searchInput" placeholder="Search" onChange={ (e) => {
                         setSearchText(e.target.value);
                     }}
                 />
