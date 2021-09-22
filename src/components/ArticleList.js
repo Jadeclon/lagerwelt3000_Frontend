@@ -11,6 +11,7 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
 
     const [articleList, setArticleList] = useState([]);
     const [searchText, setSearchText] = useState(" ");
+    const [searchType, setSearchType] = useState("articleNumber");
     const [filteredList, setFilteredList] = useState([]);
 
 
@@ -28,8 +29,18 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
 
     const searchHandler = () => {
         const searchTxt = searchText.toLowerCase();
-        setFilteredList(articleList.filter(article => article.articleNumber.toLowerCase().includes(searchTxt) || article.oe.toLowerCase().includes(searchTxt)));
+        if(searchType == "articleNumber") {
+            setFilteredList(articleList.filter(article => article.articleNumber.toLowerCase().includes(searchTxt) || article.oe.toLowerCase().includes(searchTxt)));
+        }
+        else if(searchType == "storagePlace") {
+            setFilteredList(articleList.filter(article => article.storagePlace.toLowerCase().includes(searchTxt)));
+        }
     };
+
+    const searchTypeHandler = (e) => {
+        setSearchType(e.target.value);
+        searchHandler();
+    }
 
 
     const loadArticleList = () => {
@@ -37,7 +48,7 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
             console.log("Data loaded")
             setArticleList(response.data);
             setSearchText("");
-            searchHandler();
+            // searchHandler();
         });
         setFilteredList(articleList);
       };
@@ -52,6 +63,10 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
 
     return (
         <div>
+            <select onChange={searchTypeHandler} id="selectSearch" className="select_searchType">
+                <option value="articleNumber">Artikelnummer</option>
+                <option value="storagePlace">Lagerplatz</option>
+            </select>
             <div className="searchSection">
                 <input className="searchInput" type="text" name="searchInput" placeholder="Search" onChange={ (e) => {
                         setSearchText(e.target.value);

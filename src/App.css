@@ -11,11 +11,17 @@ body {
 }
 
 .searchSection {
-	margin: 15px;
+	margin: 5px;
 }
 
 .searchInput {
 	font-size: 10px;
+}
+
+.select_searchType {
+	margin-top: 25px;
+	padding: 0.5rem;
+	font-size: 1rem;
 }
 
 /* input {
@@ -84,16 +90,11 @@ form {
 	align-items: center;
 }
 
-form input,
-form button {
+form input {
 	padding: 0.5rem;
 	font-size: 1rem;
-	/* border: none; */
-	background: white;
-}
-
-form input {
 	margin: 0.2rem;
+	background: white;
 }
 
 form button {
@@ -147,7 +148,7 @@ h3 {
 	border: none;
 	padding: 0.5rem;
 	cursor: pointer;
-	font-size: 0.1rem;
+	font-size: 1rem;
 }
 
 .decrement-btn:hover {
@@ -165,7 +166,7 @@ h3 {
 	border: none;
 	padding: 0.5rem;
 	cursor: pointer;
-	font-size: 0.1rem;
+	font-size: 1rem;
 }
 
 .increment-btn:hover {
