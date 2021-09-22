@@ -5,7 +5,7 @@
 }
 
 body {
-	background-image: linear-gradient(120deg, #ffe99f, #ffc0af);
+	background-image: linear-gradient(120deg, #fde492, #fda085);
 	color: rgb(0, 0, 0);
 	min-height: 100vh;
 }
@@ -209,12 +209,6 @@ h3 {
 
 @media (min-width: 720px) {
 	/* large */
-
-	body {
-		background-image: linear-gradient(120deg, #f6d365, #fda085);
-		color: rgb(0, 0, 0);
-		min-height: 100vh;
-	}
 
 	.mainTitle {
 		font-size: 100px;
