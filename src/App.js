@@ -13,8 +13,8 @@ function App() {
     const [selectedArticle, setSelectedArticle] = useState({});
     const [openModal, setOpenModal] = useState(false);
 
-    const databaseLocation = "http://localhost:5000";
-    // const databaseLocation = "https://lagerwelt3000.herokuapp.com";
+    // const databaseLocation = "http://localhost:5000";
+    const databaseLocation = "https://lagerwelt3000.herokuapp.com";
 
 
     return (
