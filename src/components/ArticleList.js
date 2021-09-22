@@ -34,6 +34,14 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
         }
         else if(searchType == "storagePlace") {
             setFilteredList(articleList.filter(article => article.storagePlace.toLowerCase().includes(searchTxt)));
+            setFilteredList( filteredList.sort(function(a, b){
+                let x = a.storagePlace.toLowerCase();
+                let y = b.storagePlace.toLowerCase();
+                if (x < y) {return -1;}
+                if (x > y) {return 1;}
+                return 0;
+              })
+            );
         }
     };
 
