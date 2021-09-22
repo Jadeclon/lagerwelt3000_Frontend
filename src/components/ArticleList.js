@@ -15,9 +15,10 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
 
 
     const searchHandler = () => {
-        setSearchText(searchText.toLowerCase());
-        setFilteredList(articleList.filter(article => article.articleNumber.toLowerCase().includes(searchText) || article.oe.toLowerCase().includes(searchText)));
+        const searchTxt = searchText.toLowerCase();
+        setFilteredList(articleList.filter(article => article.articleNumber.toLowerCase().includes(searchTxt) || article.oe.toLowerCase().includes(searchTxt)));
     };
+
 
     const loadArticleList = () => {
         Axios.get(`${databaseLocation}/api/get`).then( (response) => {
@@ -29,6 +30,7 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
       };
 
     useEffect( () => {
+        console.log("searchText changed!");
         searchHandler();
     }, [searchText]);
   
@@ -71,7 +73,7 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
                 </thead>
                 <tbody>
                     {
-                        filteredList.map( (article) => {
+                        filteredList.slice(0, 101).map( (article) => {
                             return (
                             <Listing
                                 key={article.articleId}
