@@ -10,9 +10,21 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
 
 
     const [articleList, setArticleList] = useState([]);
-    const [searchText, setSearchText] = useState([]);
+    const [searchText, setSearchText] = useState(" ");
     const [filteredList, setFilteredList] = useState([]);
 
+
+    useEffect( () => {
+        loadArticleList();
+    }, []);
+
+
+    useEffect( () => {
+        console.log("searchText changed!");
+        searchHandler();
+    }, [searchText]);
+  
+  
 
     const searchHandler = () => {
         const searchTxt = searchText.toLowerCase();
@@ -27,18 +39,10 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
             setSearchText("");
             searchHandler();
         });
+        setFilteredList(articleList);
       };
 
-    useEffect( () => {
-        console.log("searchText changed!");
-        searchHandler();
-    }, [searchText]);
-  
-  
-    useEffect( () => {
-      loadArticleList();
-    }, []);
-  
+
   
 
     if(!loggedIn) {
