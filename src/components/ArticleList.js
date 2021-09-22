@@ -24,19 +24,26 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
         console.log("searchText changed!");
         searchHandler();
     }, [searchText]);
+
+    useEffect( () => {
+        console.log("searchText changed!");
+        searchHandler();
+    }, [searchType]);
   
   
 
     const searchHandler = () => {
+        console.log("searchHandler: " + searchType);
         const searchTxt = searchText.toLowerCase();
         if(searchType == "articleNumber") {
             setFilteredList(articleList.filter(article => article.articleNumber.toLowerCase().includes(searchTxt) || article.oe.toLowerCase().includes(searchTxt)));
         }
         else if(searchType == "storagePlace") {
-            setFilteredList(articleList.filter(article => article.storagePlace.toLowerCase().includes(searchTxt)));
-            setFilteredList( filteredList.sort(function(a, b){
+            var shitList = articleList.filter(article => article.storagePlace.toLowerCase().includes(searchTxt));
+            setFilteredList( shitList.sort(function(a, b){
                 let x = a.storagePlace.toLowerCase();
                 let y = b.storagePlace.toLowerCase();
+                if (x.length == 0) { return -1; }
                 if (x < y) {return -1;}
                 if (x > y) {return 1;}
                 return 0;
@@ -45,18 +52,12 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
         }
     };
 
-    const searchTypeHandler = (e) => {
-        setSearchType(e.target.value);
-        searchHandler();
-    }
-
 
     const loadArticleList = () => {
         Axios.get(`${databaseLocation}/api/get`).then( (response) => {
             console.log("Data loaded")
             setArticleList(response.data);
             setSearchText("");
-            // searchHandler();
         });
         setFilteredList(articleList);
       };
@@ -71,7 +72,10 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
 
     return (
         <div>
-            <select onChange={searchTypeHandler} id="selectSearch" className="select_searchType">
+            <select onChange={ (e) => {
+                        setSearchType(e.target.value);
+                        searchHandler();
+                    }} id="selectSearch" className="select_searchType">
                 <option value="articleNumber">Artikelnummer</option>
                 <option value="storagePlace">Lagerplatz</option>
             </select>
