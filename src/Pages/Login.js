@@ -59,7 +59,6 @@ const Login = ({ setLoggedIn, databaseLocation }) => {
                         // }}
                   > Login </button>
                   </div>
-
             </div>
       )
 };
