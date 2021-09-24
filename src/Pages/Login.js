@@ -20,7 +20,6 @@ const Login = ({ setLoggedIn, setUser, desiredPath, databaseLocation }) => {
             Axios.get(`${databaseLocation}/login`).then( (response) => {
                   if (cancel) return;
                   setLoggedIn(response.data.loggedIn);
-                  setUser(response.data.user);
                   if(response.data.loggedIn === true) {
                         if(desiredPath.length > 1) {
                               history.push(desiredPath);
@@ -29,6 +28,8 @@ const Login = ({ setLoggedIn, setUser, desiredPath, databaseLocation }) => {
                               history.push("/home")
                         }
                         console.log("Login.js: Logged in!");
+                        console.log(response.data.user);
+                        setUser(response.data.user);
                   }
             });
 
