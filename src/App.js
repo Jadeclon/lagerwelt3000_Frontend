@@ -27,7 +27,7 @@ function App() {
           {  openModal === false && <h3>Feel the diffrence</h3> }
           <Router>
               <Switch>
-                      { loggedIn === false && <Route path="/" component={ () => <Login setLoggedIn={setLoggedIn} setUser={setUser} desiredPath={window.location.pathname} databaseLocation={databaseLocation} />} /> }
+                      { <Route path="/" component={ () => <Login setLoggedIn={setLoggedIn} setUser={setUser} desiredPath={window.location.pathname} databaseLocation={databaseLocation} />} /> }
                       { openModal === true && <Modal setOpenModal={setOpenModal} article={selectedArticle} user={user} databaseLocation={databaseLocation} /> }
                       { openModal === false && <Route exact path="/home" component={ () => <ArticleList selectedArticle={selectedArticle}
                                                                                                         setSelectedArticle={setSelectedArticle}
