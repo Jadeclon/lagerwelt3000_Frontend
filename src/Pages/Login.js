@@ -16,7 +16,9 @@ const Login = ({ setLoggedIn, setUser, databaseLocation }) => {
       Axios.defaults.withCredentials = true;
 
       useEffect( () => {
+            let cancel = false;
             Axios.get(`${databaseLocation}/login`).then( (response) => {
+                  if (cancel) return;
                   setLoggedIn(response.data.loggedIn);
                   setUser(response.data.user);
                   if(response.data.loggedIn === true) {
@@ -24,15 +26,19 @@ const Login = ({ setLoggedIn, setUser, databaseLocation }) => {
                         console.log("Login.js: Logged in!");
                   }
             });
+
+            return () => { 
+                  cancel = true;
+              }
       }, []);
 
-      const login = () => {
-            Axios.post(`${databaseLocation}/login`, {
+      const login = async () => {
+            await Axios.post(`${databaseLocation}/login`, {
                   username: username,
                   password: password
             }).then( (response) => {
-                  console.log(response.data.msg);
-                  if(!response.data.msg.includes("Wrong")) {
+                  console.log(response.data);
+                  if(!response.data.includes("Wrong")) {
                         console.log( response.data );
                         setLoggedIn(true);
                         history.push("/home");
