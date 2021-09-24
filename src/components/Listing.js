@@ -1,12 +1,24 @@
 import React from 'react';
 import Axios from 'axios';
-import Modal from "./Modal";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import QRCode from 'qrcode';
+import {useState, useEffect} from "react";
+import { useLocation } from 'react-router-dom'
 
 
 
 const Listing = ({article, filteredList, setFilteredList, openModal, setOpenModal, setSelectedArticle, databaseLocation}) => {
 
+
+      const [img, setImg] = useState('');
+
+      const host = window.location.host;
+
+      useEffect(() => {
+            QRCode.toDataURL("http://"+host+"/qr/"+article.articleId).then( (data) => {
+                  setImg(data);
+            });
+      }, [])
 
       const updateArticleInList = () => {
             console.log("Updating List...");
@@ -76,12 +88,20 @@ const Listing = ({article, filteredList, setFilteredList, openModal, setOpenModa
                               <i className="fas fa-minus"></i>
                         </button>
                   </td>
-                  {/* <td className="td-icon">
-                        <button onClick={ () => {editHandler()} } className="update-btn" disabled>
+                  {/* <td onClick={editHandler} className="td-icon">
+                        <button className="info-btn">
+                              <i className="fas fa-info-circle"></i>
+                        </button>
+                  </td> */}
+                  <td className="td-icon">
+                        <button onClick={editHandler} className="update-btn">
                               <i className="fas fa-edit"></i>
                         </button>
                   </td>
-                  <td className="td-icon">
+                  <td>
+                        <img src={img}></img>
+                  </td>
+                  {/* <td className="td-icon">
                         <button onClick={ () => {deleteHandler(article.articleId)} } className="trash-btn" disabled>
                               <i className="fas fa-trash"></i>
                         </button>

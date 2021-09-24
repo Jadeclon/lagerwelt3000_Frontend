@@ -2,14 +2,19 @@ import React from 'react';
 import ArticleList from './ArticleList';
 import Axios from 'axios';
 import './Modal.css';
+import { useEffect } from "react";
 
-const Modal = ({setOpenModal, article, updateArticleInList, databaseLocation}) => {
+const Modal = ({setOpenModal, article, updateArticleInList, user, databaseLocation}) => {
 
     
     const editHandler = () => {
-        article.articleNumber = document.getElementById("articleNumber").value;
-        article.storagePlace = document.getElementById("storagePlace").value;
-        article.manufacturer = document.getElementById("manufacturer").value;
+        // article.articleNumber = document.getElementById("articleNumber").value;
+        // article.storagePlace = document.getElementById("storagePlace").value;
+        // article.manufacturer = document.getElementById("manufacturer").value;
+
+        // article.quantity = document.getElementById("quantity").value;
+
+        console.log("Quantity: " + article.quantity);
 
         Axios.put(`${databaseLocation}/api/update`, {
             article: article,
@@ -31,18 +36,29 @@ const Modal = ({setOpenModal, article, updateArticleInList, databaseLocation}) =
                     <h1>You are currently editing { article.articleNumber }</h1>
                 </div>
                 <div className="body">
-                    <label htmlFor="articleNumber">Articlenumber</label>
-                    <input id="articleNumber" defaultValue={article.articleNumber}></input>
+                    {/* <label htmlFor="input_articleNumber">Artikelnummer</label> */}
+                    <input id="input_articleNumber" placeholder="Artikelnummer" defaultValue={article.articleNumber}></input>
+                    <input id="input_oe" placeholder="Vergleichsnummern" defaultValue={article.oe}></input>
 
-                    <label htmlFor="storagePlace">Storage Place</label>
-                    <input id="storagePlace" defaultValue={article.storagePlace}></input>
+                    {/* <label htmlFor="input_storagePlace">Lagerplatz</label> */}
+                    <input id="input_storagePlace" placeholder="Lagerplatz" defaultValue={article.storagePlace}></input>
+                    <input id="input_quantity" placeholder="Anzahl" onChange={ (e) => { article.quantity = e.target.value; } } defaultValue={article.quantity}></input>
+                    <input id="input_power" placeholder="Leistung" defaultValue={article.power}></input>
 
-                    <label htmlFor="manufacturer">Manufacturer</label>
-                    <input id="manufacturer" defaultValue={article.manufacturer}></input>
+                    {/* <label htmlFor="input_manufacturer">Hersteller</label> */}
+                    <input id="input_manufacturer" placeholder="Hersteller" defaultValue={article.manufacturer}></input>
+
+                    {/* <label htmlFor="input_brand">Marke</label> */}
+                    <input id="input_brand" placeholder="Marke" defaultValue={article.brand}></input>
+
+                    {/* <label htmlFor="input_grooves">Rippen</label> */}
+                    <input id="input_grooves" placeholder="Rippen" defaultValue={article.grooves}></input>
+                    <input id="input_diameter" placeholder="Durchmesser" defaultValue={article.diameter}></input>
+                    <input id="input_url" placeholder="URL" defaultValue={article.URL}></input>
                 </div>
                 <div className="footer">
-                    <button id="cancelBtn" onClick={ () => setOpenModal(false) }>Cancel</button>
-                    <button onClick={editHandler}>Apply</button>
+                    <button id="cancelBtn" onClick={ () => setOpenModal(false) }>Abbrechen</button>
+                    { user.level > 3 && <button onClick={editHandler}>Update</button> }
                 </div>
             </div>
         </div>

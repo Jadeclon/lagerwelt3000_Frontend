@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 
 
 
+
 const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, setOpenModal, databaseLocation}) => {
 
 
@@ -21,38 +22,15 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
 
 
     useEffect( () => {
-        console.log("searchText changed!");
         searchHandler();
-    }, [searchText]);
+    }, [searchText, searchType]);
 
-    useEffect( () => {
-        console.log("searchText changed!");
-        searchHandler();
-    }, [searchType]);
+    // useEffect( () => {
+    //     console.log("searchType changed!");
+    //     searchHandler();
+    // }, [searchType]);
   
-  
-
-    const searchHandler = () => {
-        console.log("searchHandler: " + searchType);
-        const searchTxt = searchText.toLowerCase();
-        if(searchType == "articleNumber") {
-            setFilteredList(articleList.filter(article => article.articleNumber.toLowerCase().includes(searchTxt) || article.oe.toLowerCase().includes(searchTxt)));
-        }
-        else if(searchType == "storagePlace") {
-            var shitList = articleList.filter(article => article.storagePlace.toLowerCase().includes(searchTxt));
-            setFilteredList( shitList.sort(function(a, b){
-                let x = a.storagePlace.toLowerCase();
-                let y = b.storagePlace.toLowerCase();
-                if (x.length == 0) { return -1; }
-                if (x < y) {return -1;}
-                if (x > y) {return 1;}
-                return 0;
-              })
-            );
-        }
-    };
-
-
+     
     const loadArticleList = () => {
         Axios.get(`${databaseLocation}/api/get`).then( (response) => {
             console.log("Data loaded")
@@ -60,9 +38,27 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
             setSearchText("");
         });
         setFilteredList(articleList);
-      };
+    };
 
 
+    const searchHandler = () => {
+        const searchTxt = searchText.toLowerCase().replaceAll(" ", "");
+        if(searchType === "articleNumber") {
+            setFilteredList(articleList.filter(article => article.articleNumber.toLowerCase().includes(searchTxt) || article.oe.toLowerCase().includes(searchTxt)));
+        }
+        else if(searchType === "storagePlace") {
+            var shitList = articleList.filter(article => article.storagePlace.toLowerCase().includes(searchTxt));
+            setFilteredList( shitList.sort(function(a, b){
+                let x = a.storagePlace.toLowerCase();
+                let y = b.storagePlace.toLowerCase();
+                if (x.length === 0) { return -1; }
+                if (x < y) {return -1;}
+                if (x > y) {return 1;}
+                return 0;
+              })
+            );
+        }
+    };
   
 
     if(!loggedIn) {
@@ -98,6 +94,8 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
                         <th>Hersteller</th>
                         <th className="td-icon">+</th>
                         <th className="td-icon">-</th>
+                        <th className="td-icon">Details</th>
+                        <th>QRCode</th>
                         {/* <th>Edit</th>
                         <th>X</th> */}
                     </tr>
