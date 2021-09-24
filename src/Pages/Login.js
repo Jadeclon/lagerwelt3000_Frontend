@@ -22,7 +22,12 @@ const Login = ({ setLoggedIn, setUser, desiredPath, databaseLocation }) => {
                   setLoggedIn(response.data.loggedIn);
                   setUser(response.data.user);
                   if(response.data.loggedIn === true) {
-                        // history.push(desiredPath);
+                        if(desiredPath.length > 1) {
+                              history.push(desiredPath);
+                        }
+                        else {
+                              history.push("/home")
+                        }
                         console.log("Login.js: Logged in!");
                   }
             });
@@ -38,10 +43,17 @@ const Login = ({ setLoggedIn, setUser, desiredPath, databaseLocation }) => {
                   password: password
             }).then( (response) => {
                   console.log("Message: " + response.data.msg);
-                  if(!response.data.includes("Wrong")) {
+                  var msg = String(response.data.msg);
+                  if(!msg.includes("Wrong")) {
                         console.log( response.data );
                         setLoggedIn(true);
-                        // history.push(desiredPath);
+                        setUser(response.data.user);
+                        if(desiredPath.length > 1) {
+                              history.push(desiredPath);
+                        }
+                        else {
+                              history.push("/home")
+                        }
                         console.log("Login.js2: Logged in!");
                   } else {
                         setLoginStatus(response.data);

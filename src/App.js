@@ -15,14 +15,14 @@ function App() {
     const [selectedArticle, setSelectedArticle] = useState({});
     const [openModal, setOpenModal] = useState(false);
 
-    // const databaseLocation = "http://localhost:5000";
-    const databaseLocation = "https://lagerwelt3000.herokuapp.com";
+    const databaseLocation = "http://localhost:5000";
+    // const databaseLocation = "https://lagerwelt3000.herokuapp.com";
 
 
     return (
       <div className="App">
           { console.log(window.location.pathname) }
-          {  loggedIn === true && openModal === false && loggedIn === true && <h5>Logged in as: {user.user}</h5> }
+          {/* {  loggedIn === true && openModal === false && <h5>Logged in as: {user}</h5> } */}
           {  openModal === false && <h1 className="mainTitle">Lagerwelt ONLINE</h1> }
           {  openModal === false && <h3>Feel the diffrence</h3> }
           <Router>
