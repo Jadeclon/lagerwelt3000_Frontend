@@ -9,7 +9,6 @@ import { Redirect } from "react-router-dom";
 const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, setOpenModal, databaseLocation}) => {
 
 
-
     const [articleList, setArticleList] = useState([]);
     const [searchText, setSearchText] = useState(" ");
     const [searchType, setSearchType] = useState("articleNumber");
@@ -24,20 +23,22 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
     useEffect( () => {
         searchHandler();
     }, [searchText, searchType]);
-
-    // useEffect( () => {
-    //     console.log("searchType changed!");
-    //     searchHandler();
-    // }, [searchType]);
   
      
     const loadArticleList = () => {
+
+        let cancel = false;
         Axios.get(`${databaseLocation}/api/get`).then( (response) => {
             console.log("Data loaded")
+            if (cancel) return;
             setArticleList(response.data);
             setSearchText("");
         });
-        setFilteredList(articleList);
+        setFilteredList(articleList);      
+
+        return () => { 
+            cancel = true;
+        }
     };
 
 

@@ -21,12 +21,13 @@ function App() {
 
     return (
       <div className="App">
-          {  openModal === false && loggedIn === true && <h5>Logged in as: {user.user}</h5> }
+          { console.log(window.location.pathname) }
+          {  loggedIn === true && openModal === false && loggedIn === true && <h5>Logged in as: {user.user}</h5> }
           {  openModal === false && <h1 className="mainTitle">Lagerwelt ONLINE</h1> }
           {  openModal === false && <h3>Feel the diffrence</h3> }
           <Router>
               <Switch>
-                      { loggedIn === false && <Route path="/" component={ () => <Login setLoggedIn={setLoggedIn} setUser={setUser} databaseLocation={databaseLocation} />} /> }
+                      { loggedIn === false && <Route path="/" component={ () => <Login setLoggedIn={setLoggedIn} setUser={setUser} desiredPath={window.location.pathname} databaseLocation={databaseLocation} />} /> }
                       { openModal === true && <Modal setOpenModal={setOpenModal} article={selectedArticle} user={user} databaseLocation={databaseLocation} /> }
                       { openModal === false && <Route exact path="/home" component={ () => <ArticleList selectedArticle={selectedArticle}
                                                                                                         setSelectedArticle={setSelectedArticle}
@@ -34,11 +35,11 @@ function App() {
                                                                                                         openModal={openModal}
                                                                                                         setOpenModal={setOpenModal}
                                                                                                         databaseLocation={databaseLocation} />} /> }
-                    <Route path="/qr" component={ () => <QRCall
+                    { loggedIn === true && <Route path="/qr" component={ () => <QRCall
                         openModal={openModal}
                         setOpenModal={setOpenModal}
                         user={user}
-                        databaseLocation={databaseLocation} />} />
+                        databaseLocation={databaseLocation} />} /> }
               </Switch>
           </Router>
       </div>

@@ -3,18 +3,13 @@ import ArticleList from './ArticleList';
 import Axios from 'axios';
 import './Modal.css';
 import { useEffect } from "react";
+import { useHistory } from 'react-router-dom'
 
 const Modal = ({setOpenModal, article, updateArticleInList, user, databaseLocation}) => {
 
-    
+    let history = useHistory(); 
+
     const editHandler = () => {
-        // article.articleNumber = document.getElementById("articleNumber").value;
-        // article.storagePlace = document.getElementById("storagePlace").value;
-        // article.manufacturer = document.getElementById("manufacturer").value;
-
-        // article.quantity = document.getElementById("quantity").value;
-
-        console.log("Quantity: " + article.quantity);
 
         Axios.put(`${databaseLocation}/api/update`, {
             article: article,
@@ -30,7 +25,7 @@ const Modal = ({setOpenModal, article, updateArticleInList, user, databaseLocati
         <div className="modalBackground">
             <div className="modalContainer">
                 <div className="xContainer">
-                    <button onClick={ () => setOpenModal(false) }> X </button>
+                    <button onClick={ () => { setOpenModal(false); history.push("/home"); }}> X </button>
                 </div>
                 <div className="title">
                     <h1>You are currently editing { article.articleNumber }</h1>
@@ -57,7 +52,7 @@ const Modal = ({setOpenModal, article, updateArticleInList, user, databaseLocati
                     <input id="input_url" placeholder="URL" defaultValue={article.URL}></input>
                 </div>
                 <div className="footer">
-                    <button id="cancelBtn" onClick={ () => setOpenModal(false) }>Abbrechen</button>
+                    <button id="cancelBtn" onClick={ () => { setOpenModal(false); history.push("/home"); }}>Abbrechen</button>
                     { user.level > 3 && <button onClick={editHandler}>Update</button> }
                 </div>
             </div>

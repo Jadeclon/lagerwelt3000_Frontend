@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { useLocation } from 'react-router-dom'
+import { useLocation, useHistory } from 'react-router-dom'
 import { useState, useEffect } from "react";
 import Axios from "axios";
 import Modal from "./Modal";
@@ -9,15 +9,18 @@ const QRCall = ({openModal, setOpenModal, user, databaseLocation}) => {
     const articleId = useLocation().pathname.substring(4);
     const [article, setArticle] = useState({});
 
+    let history = useHistory(); 
+
+
     useEffect( () => {
         
         let cancel = false;
         Axios.get(`${databaseLocation}/api/get/${articleId}`).then( (response) => {
             console.log("Article loaded")
             if (cancel) return;
+            console.log(response.data[0]);
             setArticle(response.data[0]);
             // setOpenModal(true);
-            
         });
 
         return () => { 
@@ -48,7 +51,6 @@ const QRCall = ({openModal, setOpenModal, user, databaseLocation}) => {
 
     return (
         <div>
-            {/* {setOpenModal(true)} */}
             <Modal setOpenModal={setOpenModal} article={article} user={user} databaseLocation={databaseLocation} />
             {/* <h1>{article.articleNumber}</h1>
             <h2>Hersteller: { article.manufacturer }</h2>
