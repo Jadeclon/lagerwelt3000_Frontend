@@ -16,6 +16,9 @@ const Login = ({ setLoggedIn, setUser, desiredPath, databaseLocation }) => {
       Axios.defaults.withCredentials = true;
 
       useEffect( () => {
+
+            console.log("Loggin Page loaded..");
+
             Axios.get(`${databaseLocation}/login`).then( (response) => {
 
                   setLoggedIn(response.data.loggedIn);
