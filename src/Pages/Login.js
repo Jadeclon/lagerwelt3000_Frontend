@@ -38,10 +38,8 @@ const Login = ({ setLoggedIn, setUser, desiredPath, databaseLocation }) => {
                   username: username,
                   password: password
             }).then( (response) => {
-                  console.log("Message: " + response.data);
-                  var msg = String(response.data.msg);
-                  if(!msg.includes("Wrong")) {
-                        console.log( response.data );
+                  console.log(response.data);
+                  if(!response.data.msg.includes("Wrong")) {
                         setLoggedIn(true);
                         setUser(response.data.user);
                         if(desiredPath.length > 1) {
@@ -52,8 +50,7 @@ const Login = ({ setLoggedIn, setUser, desiredPath, databaseLocation }) => {
                         }
                         console.log("Login.js2: Logged in!");
                   } else {
-                        setLoginStatus(response.data);
-                        console.log("Wronnggg!");
+                        setLoginStatus(response.data.msg);
                   }
             });
       };
