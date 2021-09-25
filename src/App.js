@@ -21,13 +21,12 @@ function App() {
 
     return (
       <div className="App">
-          { console.log(window.location.pathname) }
-          {/* {  loggedIn === true && openModal === false && <h5>Logged in as: {user}</h5> } */}
+          {  loggedIn === true && openModal === false && <h5>Logged in as: {user.user}</h5> }
           {  openModal === false && <h1 className="mainTitle">Lagerwelt ONLINE</h1> }
           {  openModal === false && <h3>Feel the diffrence</h3> }
           <Router>
               <Switch>
-                      { <Route path="/" component={ () => <Login setLoggedIn={setLoggedIn} setUser={setUser} desiredPath={window.location.pathname} databaseLocation={databaseLocation} />} /> }
+                      { loggedIn === false && <Route path="/" component={ () => <Login setLoggedIn={setLoggedIn} setUser={setUser} desiredPath={window.location.pathname} databaseLocation={databaseLocation} />} /> }
                       { openModal === true && <Modal setOpenModal={setOpenModal} article={selectedArticle} user={user} databaseLocation={databaseLocation} /> }
                       { openModal === false && <Route exact path="/home" component={ () => <ArticleList selectedArticle={selectedArticle}
                                                                                                         setSelectedArticle={setSelectedArticle}

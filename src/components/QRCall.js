@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { useLocation, useHistory } from 'react-router-dom'
+import React from 'react';
+import { useLocation } from 'react-router-dom'
 import { useState, useEffect } from "react";
 import Axios from "axios";
 import Modal from "./Modal";
@@ -8,9 +8,6 @@ const QRCall = ({openModal, setOpenModal, user, databaseLocation}) => {
 
     const articleId = useLocation().pathname.substring(4);
     const [article, setArticle] = useState({});
-
-    let history = useHistory(); 
-
 
     useEffect( () => {
         
@@ -26,26 +23,26 @@ const QRCall = ({openModal, setOpenModal, user, databaseLocation}) => {
         return () => { 
             cancel = true;
         }
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
 
-    const incrementHandler = () => {
-        // article.quantity += 1;
+    // const incrementHandler = () => {
+    //     article.quantity += 1;
 
-        // Axios.put(`${databaseLocation}/api/updateQuantity`, {
-        //     quantity: article.quantity,
-        //     articleId: article.articleId,
-        // });
-    };
+    //     Axios.put(`${databaseLocation}/api/updateQuantity`, {
+    //         quantity: article.quantity,
+    //         articleId: article.articleId,
+    //     });
+    // };
 
-    const decrementHandler = () => {
-        // article.quantity -= 1;
+    // const decrementHandler = () => {
+    //     article.quantity -= 1;
 
-        // Axios.put(`${databaseLocation}/api/updateQuantity`, {
-        //     quantity: article.quantity,
-        //     articleId: article.articleId,
-        // });
-    };
+    //     Axios.put(`${databaseLocation}/api/updateQuantity`, {
+    //         quantity: article.quantity,
+    //         articleId: article.articleId,
+    //     });
+    // };
 
     
 

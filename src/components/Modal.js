@@ -1,8 +1,6 @@
 import React from 'react';
-import ArticleList from './ArticleList';
 import Axios from 'axios';
 import './Modal.css';
-import { useEffect } from "react";
 import { useHistory } from 'react-router-dom'
 
 const Modal = ({setOpenModal, article, updateArticleInList, user, databaseLocation}) => {
@@ -17,6 +15,9 @@ const Modal = ({setOpenModal, article, updateArticleInList, user, databaseLocati
             console.log(response);
         });
         setOpenModal(false);
+        if(history.location.pathname !== "/home") {
+            history.push("/home");
+        }
         // updateArticleInList();
     };
 

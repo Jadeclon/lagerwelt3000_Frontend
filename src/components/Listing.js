@@ -1,9 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import QRCode from 'qrcode';
 import {useState, useEffect} from "react";
-import { useLocation } from 'react-router-dom'
 
 
 
@@ -15,10 +13,15 @@ const Listing = ({article, filteredList, setFilteredList, openModal, setOpenModa
       const host = window.location.host;
 
       useEffect(() => {
+            generateQRCode();
+      }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+      const generateQRCode = () =>
+      {
             QRCode.toDataURL("http://"+host+"/qr/"+article.articleId).then( (data) => {
                   setImg(data);
             });
-      }, [])
+      }
 
       const updateArticleInList = () => {
             console.log("Updating List...");
@@ -64,10 +67,10 @@ const Listing = ({article, filteredList, setFilteredList, openModal, setOpenModa
       };
       
 
-      const deleteHandler = (articleId) => {
-            Axios.delete(`${databaseLocation}/api/delete/${articleId}`);
-            setFilteredList(filteredList.filter( (el) => el.articleId !== article.articleId));
-      };
+      // const deleteHandler = (articleId) => {
+      //       Axios.delete(`${databaseLocation}/api/delete/${articleId}`);
+      //       setFilteredList(filteredList.filter( (el) => el.articleId !== article.articleId));
+      // };
 
 
       return (
@@ -99,7 +102,7 @@ const Listing = ({article, filteredList, setFilteredList, openModal, setOpenModa
                         </button>
                   </td>
                   <td>
-                        <img src={img}></img>
+                        <img alt="QRCode" src={img}></img>
                   </td>
                   {/* <td className="td-icon">
                         <button onClick={ () => {deleteHandler(article.articleId)} } className="trash-btn" disabled>
