@@ -97,7 +97,7 @@ const Listing = ({article, filteredList, setFilteredList, openModal, setOpenModa
                         </button>
                   </td> */}
                   <td className="td-icon">
-                        <button onClick={editHandler} className="update-btn">
+                        <button onClick={editHandler} className="update-btn" disabled>
                               <i className="fas fa-edit"></i>
                         </button>
                   </td>

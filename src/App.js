@@ -28,7 +28,7 @@ function App() {
       <div className="App">
             <Router>
                 { loggedIn === true && <Nav user={user}/> }
-                { openModal === false && <img src="https://cdn.shopify.com/s/files/1/0540/2355/3219/files/logo_png.png?v=1634550054" alt="md-teile logo"/> }
+                { openModal === false && <img className="mainImg" src="https://cdn.shopify.com/s/files/1/0540/2355/3219/files/logo_png.png?v=1634550054" alt="md-teile logo"/> }
                 {/* {  openModal === false && <h1 className="mainTitle">Lagerwelt ONLINE</h1> } */}
                 {  openModal === false && <h3 className="subTitle">Feel the diffrence</h3> }
                 <Switch>

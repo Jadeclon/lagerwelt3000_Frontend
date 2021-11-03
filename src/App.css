@@ -10,8 +10,9 @@ body {
 	min-height: 100vh;
 }
 
-img {
-	margin-top: 3rem;
+.mainImg {
+	margin-top: 1.5rem;
+	width: 200px;
 }
 
 .searchSection {
@@ -258,13 +259,15 @@ h3 {
 	justify-content: flex-end;
 }
 
-/* STYLING FOR MOBILE DEVICES */
-
 @media (min-width: 720px) {
 	/* large */
 
 	.mainTitle {
 		font-size: 100px;
+	}
+
+	.mainImg {
+		width: auto;
 	}
 
 	h3 {
