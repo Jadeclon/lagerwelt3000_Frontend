@@ -1,25 +1,32 @@
 import React,  { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import Axios from 'axios';
 import './login.css';
 
+
+
 const Login = ({ setLoggedIn, setUser, desiredPath, databaseLocation }) => {
-
-
-      const [username, setUsername] = useState('');
-      const [password, setPassword] = useState('');
 
       const [loginStatus, setLoginStatus] = useState('');
 
       let history = useHistory(); 
+      let user = '';
+      let pass = '';
+
+      let loggedIn = false;
 
       Axios.defaults.withCredentials = true;
 
       useEffect( () => {
+            window.addEventListener("keydown", handleKeyPress);
+            isLoggedIn();
+      }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+      const isLoggedIn = async () => {
+            
             console.log("Loggin Page loaded..");
 
-            Axios.get(`${databaseLocation}/login`).then( (response) => {
+            await Axios.get(`${databaseLocation}/login`).then( (response) => {
 
                   setLoggedIn(response.data.loggedIn);
 
@@ -29,18 +36,20 @@ const Login = ({ setLoggedIn, setUser, desiredPath, databaseLocation }) => {
                         else { history.push("/home") }
                         console.log("Login.js: Logged in!");
                         setUser(response.data.user);
+                        loggedIn = true;
                   }
             });
-      }, []); // eslint-disable-line react-hooks/exhaustive-deps
+      }
 
       const login = async () => {
             await Axios.post(`${databaseLocation}/login`, {
-                  username: username,
-                  password: password
+                  username: document.getElementById("usernameInput").value,
+                  password: document.getElementById("passwordInput").value
             }).then( (response) => {
                   console.log(response.data);
                   if(!response.data.msg.includes("Wrong")) {
                         setLoggedIn(true);
+                        loggedIn = true;
                         setUser(response.data.user);
                         if(desiredPath.length > 1) {
                               history.push(desiredPath);
@@ -56,6 +65,16 @@ const Login = ({ setLoggedIn, setUser, desiredPath, databaseLocation }) => {
       };
 
 
+      const handleKeyPress = (event) => {
+            // console.log("Event: " + event.key);3
+            if(event.charCode == 13 || event.key === 'Enter') {
+                  if(loggedIn === false)
+                  {
+                        login();
+                  }
+            } 
+      }
+
       return (
 
             <div className="loginSection">
@@ -65,9 +84,9 @@ const Login = ({ setLoggedIn, setUser, desiredPath, databaseLocation }) => {
                         <h3 className="loginStatus">{loginStatus}</h3>
                   </div>
                   <div className="loginInputs">
-                        <input onChange={(e) => { setUsername(e.target.value) }} type="text" placeholder="Username" />
-                        <input onChange={(e) => { setPassword(e.target.value) }} type="password" placeholder="Password" />
-                        <button className="loginButton" onClick={login}> Login </button>
+                        <input type="text" id="usernameInput" placeholder="Username" />
+                        <input type="password" id="passwordInput" placeholder="Password" />
+                        <button className="loginButton" onClick={login} > Login </button>
                   </div>
             </div>
       )

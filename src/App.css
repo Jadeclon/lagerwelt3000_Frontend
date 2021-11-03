@@ -10,6 +10,10 @@ body {
 	min-height: 100vh;
 }
 
+img {
+	margin-top: 3rem;
+}
+
 .searchSection {
 	margin: 5px;
 }
@@ -113,6 +117,11 @@ form button:hover {
 	font-family: Teko;
 	font-size: 30px;
 	margin: 0px;
+}
+
+.subTitle {
+	color: rgb(36, 42, 79);
+	font-weight: bold;
 }
 
 h3 {
@@ -225,6 +234,31 @@ h3 {
 	align-items: center;
 	justify-content: center;
 }
+
+.nav {
+	margin: 0%;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.username {
+	margin: 0%;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.black-btn {
+	background: transparent;
+	color: #000000;
+	border: none;
+	padding: 1rem;
+	cursor: pointer;
+	font-size: 2rem;
+	/* align-items:flex-end; */
+	justify-content: flex-end;
+}
+
+/* STYLING FOR MOBILE DEVICES */
 
 @media (min-width: 720px) {
 	/* large */

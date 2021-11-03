@@ -1,3 +1,11 @@
+/* * {
+	color: rgb(36, 42, 79);
+} */
+
+h1 {
+	color: rgb(36, 42, 79);
+}
+
 .loginSection {
 	/* height: 100vh; */
 	position: fixed;
@@ -62,7 +70,7 @@
 	}
 
 	.loginButton {
-		background-color: #4caf50;
+		background-color: rgb(80, 110, 159);
 		border: none;
 		color: white;
 		padding: 15px 32px;

@@ -101,9 +101,9 @@ const Listing = ({article, filteredList, setFilteredList, openModal, setOpenModa
                               <i className="fas fa-edit"></i>
                         </button>
                   </td>
-                  <td>
+                  {/* <td>
                         <img alt="QRCode" src={img}></img>
-                  </td>
+                  </td> */}
                   {/* <td className="td-icon">
                         <button onClick={ () => {deleteHandler(article.articleId)} } className="trash-btn" disabled>
                               <i className="fas fa-trash"></i>

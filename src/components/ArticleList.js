@@ -31,12 +31,13 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
             isMounted = false;
         }
 
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [selectedArticle]); // eslint-disable-line react-hooks/exhaustive-deps
 
 
     /** Search Handler **/
     useEffect( () =>
     {
+        console.log("SearchText: " + searchText);
         const searchTxt = searchText.toLowerCase().replaceAll(" ", "");
         if(searchType === "articleNumber") {
             setFilteredList(articleList.filter(article => article.articleNumber.toLowerCase().includes(searchTxt) || article.oe.toLowerCase().includes(searchTxt)));
@@ -87,7 +88,7 @@ const ArticleList = ({selectedArticle, setSelectedArticle, loggedIn, openModal, 
                         <th className="td-icon">+</th>
                         <th className="td-icon">-</th>
                         <th className="td-icon">Details</th>
-                        <th>QRCode</th>
+                        {/* <th>QRCode</th> */}
                         {/* <th>Edit</th>
                         <th>X</th> */}
                     </tr>
